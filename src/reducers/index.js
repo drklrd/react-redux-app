@@ -1,4 +1,4 @@
-import { combineReducers } from 'reducers';
+import { combineReducers } from 'redux';
 
 import BooksReducer from './reducer_books';
 
