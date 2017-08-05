@@ -18,16 +18,19 @@ export default class SearchBar extends Component{
         });
     }
 
+    onFormSubmit(event){
+        event.preventDefault();
+    }
+
     render(){
         return(
-            <form className="input-group">
+            <form onSubmit={this.onFormSubmit} className="input-group">
                 <input
                     placeholder="Search here ..."
                     className="form-control"
                     onChange={this.onInputChange}
                     value = {this.state.term}
                 />
-
                 <span className="input-group-btn">
                     <button type="submit" className="btn btn-secondary">Submit</button>
                 </span>
