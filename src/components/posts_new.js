@@ -12,11 +12,10 @@ class PostsNew extends Component{
                     type="text"
                     {...field.input}
                 />
+            {field.meta.error}
             </div>
         );
     }
-
-
     // field doesnt  know how to show itself. Only knows how to interact with redux form
     // so comes the JSX Blob !!!
     // so comes the componend attribute !!!!!
@@ -29,8 +28,8 @@ class PostsNew extends Component{
                     component={this.renderField}
                 />
                 <Field
-                    label = "Tags"
-                    name="tags"
+                    label = "Categories"
+                    name="categories"
                     component={this.renderField}
                 />
                 <Field
@@ -38,11 +37,28 @@ class PostsNew extends Component{
                     name="content"
                     component={this.renderField}
                 />
+
+                <button type="submit" className="btn btn-primary">Submit</button>
             </form>
         );
     }
 }
 
+function validate(values){
+    const  errors = {};
+    if ( !values.title){
+        errors.title = "Enter a title";
+    }
+    if ( !values.categories){
+        errors.categories = "Enter some category";
+    }
+    if ( !values.content){
+        errors.content = "Enter some content";
+    }
+    return errors;
+}
+
 export default reduxForm({  // reduxForm will be communicating with redux store here . WOW !!!
-    form : 'PostsNewForm' // form name should be unique string
+    form : 'PostsNewForm', // form name should be unique string,
+    validate
 })(PostsNew);
