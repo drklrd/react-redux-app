@@ -43,3 +43,7 @@ svg {
     height: 180px;
     width: 180px;
 }
+
+form a {
+    margin-left : 5px; // LINK TAG DO END UP AS AN ANCHOR TAG
+}
