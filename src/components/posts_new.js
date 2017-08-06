@@ -4,24 +4,37 @@ import { Field, reduxForm } from 'redux-form';
 class PostsNew extends Component{
 
     renderField(field){
+        const { meta : { touched, error } } =  field; // ES6. Nested destructuring !!!
+        const className = `form-group ${touched && error ? 'has-danger' : ''}`;
         return(
-            <div className="form-group">
+            <div className={className}>
                 <label>{field.label}</label>
                 <input
                     className="form-control"
                     type="text"
                     {...field.input}
                 />
-            {field.meta.error}
+            <div className="text-help">
+                {touched ? error : ''}
+            </div>
             </div>
         );
     }
+
+    onSubmit(values){
+        console.log('$$$',values);
+    }
+
     // field doesnt  know how to show itself. Only knows how to interact with redux form
     // so comes the JSX Blob !!!
     // so comes the componend attribute !!!!!
     render(){
+
+        const { handleSubmit } = this.props; // this is a prop passed from redux-form !!!!!
+        // BUT REDUX FORM IS NOT RESPONSIBLE FOR POST REQUEST !
+
         return (
-            <form>
+            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                 <Field
                     label = "Title for post"
                     name="title"
