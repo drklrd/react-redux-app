@@ -25,7 +25,9 @@ class PostsNew extends Component{
     }
 
     onSubmit(values){
-        this.props.createPost(values);
+        this.props.createPost(values,()=>{
+            this.props.history.push('/');
+        });
     }
 
     // field doesnt  know how to show itself. Only knows how to interact with redux form
