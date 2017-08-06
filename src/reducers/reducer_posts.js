@@ -17,6 +17,10 @@ export default function(state={},action){
                 ...state, [action.payload.data.id] : action.payload.data
             };
             break;
+        case DELETE_POST:
+            // benefit of using OBJECT as application level STATE
+            return _.omit(state,action.payload);
+            break;
         default:
             return state;
     }
