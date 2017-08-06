@@ -3,16 +3,19 @@ import { Field, reduxForm } from 'redux-form';
 
 class PostsNew extends Component{
 
-    renderTitleField(field){
+    renderField(field){
         return(
-            <div>
+            <div className="form-group">
+                <label>{field.label}</label>
                 <input
+                    className="form-control"
                     type="text"
                     {...field.input}
                 />
             </div>
         );
     }
+
 
     // field doesnt  know how to show itself. Only knows how to interact with redux form
     // so comes the JSX Blob !!!
@@ -21,8 +24,19 @@ class PostsNew extends Component{
         return (
             <form>
                 <Field
+                    label = "Title for post"
                     name="title"
-                    component={this.renderTitleField}
+                    component={this.renderField}
+                />
+                <Field
+                    label = "Tags"
+                    name="tags"
+                    component={this.renderField}
+                />
+                <Field
+                    label = "Post content"
+                    name="content"
+                    component={this.renderField}
                 />
             </form>
         );
